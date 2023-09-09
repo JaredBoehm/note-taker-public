@@ -14,6 +14,7 @@ notes.post('/', (req, res) => {
         savedNotes.push(newNote)
         fs.writeFile('./db/notes.json', JSON.stringify(savedNotes), (err) => (err) ? console.log(err) : console.log(`New note (${newNote.id}) written to db.`))
     })
+    res.send('Note successfully updated.')
 })
 
 notes.delete('/:id', (req, res) => {
@@ -23,6 +24,7 @@ notes.delete('/:id', (req, res) => {
         updatedNotes = savedNotes.filter(x => x.id !== req.params.id)
         fs.writeFile('./db/notes.json', JSON.stringify(updatedNotes), (err) => (err) ? console.log(err) : console.log(`Note (${req.params.id}) removed from db.`))
     })
+    res.send('Note successfully Deleted.')
 })
 
 module.exports = notes
